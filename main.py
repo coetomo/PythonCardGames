@@ -215,7 +215,20 @@ class Deck(Pile):
         jokers = [Card(c, specSize=cardSpecSize) for c in Card.JOKERS]
         return Deck.standard_plus(x, y, deckSize, jokers, specSize=cardSpecSize)
     
-    
+class Hand(CardHolder):
+    def __init__(self, display_size, size, player, data):
+        super().__init__(data=data)
+        self.size = size
+        self.player = player
+        self.width, self.height = display_size
+        self.rect = pygame.Rect(0, self.height-250, self.width, self.height//2)
+
+    def draw(self, surf):
+        pygame.draw.rect(surf, pygame.Color(12, 50, 255), self.rect)    
+
+    def checkCollide(self, pos):
+        return self.rect.collidepoint(pos)
+            
 
 def main():
     DISPLAY_SIZE = (800,600)
@@ -225,7 +238,7 @@ def main():
     pygame.init()
     DISPLAY=pygame.display.set_mode(DISPLAY_SIZE)
     g = Group(10, 10, 18, 0, CARD_SIZE, [Card(s, specSize=CARD_SIZE) for s in ("4D", "5S", "6C", "QS", "JH", "8C")])
-
+    h = Hand(DISPLAY_SIZE, CARD_SIZE, None, None)
     clock = pygame.time.Clock()
     state = State.IDLE
     clicked = drag = topcard = None
@@ -268,9 +281,12 @@ def main():
         
         DISPLAY.fill(GREEN)
         g.draw(DISPLAY)
-
         if topcard:
             topcard.draw(DISPLAY)
+
+        h.draw(DISPLAY)
+        if h.checkCollide(pygame.mouse.get_pos()):
+            print("mouse hovered!")
         pygame.display.flip()
 
         clock.tick(60)
