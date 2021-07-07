@@ -221,7 +221,7 @@ def main():
     DISPLAY_SIZE = (800,600)
     GREEN=(0,128,0)
     CARD_SIZE = (100, 145)
-    x = 5
+    
     pygame.init()
     DISPLAY=pygame.display.set_mode(DISPLAY_SIZE)
     g = Group(10, 10, 18, 0, CARD_SIZE, [Card(s, specSize=CARD_SIZE) for s in ("4D", "5S", "6C", "QS", "JH", "8C")])
