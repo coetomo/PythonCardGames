@@ -1,0 +1,17 @@
+{
+    "editor.rulers": [
+        80
+    ],
+    "python.autoComplete.extraPaths": [
+        "C:/Python38/Lib/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "C:/Python38/Lib/site-packages"
+    ],
+    
+    "python.linting.pylintArgs": ["--generate-members"],
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.pylamaEnabled": false
+}
